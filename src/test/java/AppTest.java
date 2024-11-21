@@ -7,13 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
   @Test
-  void 실험_assertThat() {
+  void assertJ_assertThat() {
     int rs = 10 + 20;
     assertThat(rs).isEqualTo(30);
   }
 
   @Test
-  void 실험_ObjectMapper() throws JsonProcessingException {
+  void objectMapper__objToJsonStr() {
     ArticleDto articleDto = new ArticleDto(1, "제목1", "내용1");
 
     /*
@@ -33,5 +33,19 @@ public class AppTest {
     assertThat(jsonStr).isEqualTo("""
         {"id":1,"subject":"제목1","content":"내용1"}
         """.trim());
+  }
+
+  @Test
+  void objectMapper__jsonStrToObj() {
+    // ctrl + shift + alt + R
+    ArticleDto articleDtoOrigin = new ArticleDto(1, "제목1", "내용1");
+    // 객체를 json으로 변환
+    String jsonStr = Ut.json.toStr(articleDtoOrigin, "");
+    System.out.println(jsonStr);
+
+    ArticleDto articleDtoFromJson = (ArticleDto)Ut.json.toObj(jsonStr, ArticleDto.class, null);
+    System.out.println(articleDtoFromJson);
+
+    assertThat(articleDtoFromJson).isEqualTo(articleDtoFromJson);
   }
 }
