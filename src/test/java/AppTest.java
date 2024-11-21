@@ -23,7 +23,7 @@ public class AppTest {
     System.out.println(jsonStr);
     */
 
-    String jsonStr = Ut.json.toJsonStr(articleDto, "");
+    String jsonStr = Ut.json.toStr(articleDto, "");
     System.out.println(jsonStr);
 
     // isNotBlank() : 빈 문자열이 아니다.
